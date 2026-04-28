@@ -1,0 +1,593 @@
+/* ─── PRINT & DESIGN SECTION ─────────────────────── */
+.print-section {
+  background: var(--warm-white);
+  padding: var(--section-pad) var(--gutter);
+}
+
+.print-inner {
+  max-width: var(--inner-max);
+  margin: 0 auto;
+}
+
+.print-label {
+  font-family: var(--font-impact);
+  font-size: clamp(10px, 1.2vw, 13px);
+  letter-spacing: 0.3em;
+  color: var(--blush);
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.print-heading {
+  color: var(--charcoal);
+  font-size: clamp(36px, 5vw, 72px);
+  margin-bottom: 0.8rem;
+}
+
+.print-heading em {
+  color: var(--blush);
+  font-style: italic;
+}
+
+.print-intro {
+  color: var(--warm-grey);
+  font-size: clamp(14px, 1.2vw, 16px);
+  margin-bottom: clamp(32px, 4vw, 56px);
+  max-width: 500px;
+}
+
+/* ─── GRID ───────────────────────────────────────── */
+.print-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+/* Top row: Audi | BestDrive | Bridgestone — equal thirds */
+.print-audi        { grid-column: 1;     grid-row: 1; }
+.print-bestdrive   { grid-column: 2;     grid-row: 1; }
+.print-bridgestone { grid-column: 3;     grid-row: 1; }
+/* PEP promo below — full width */
+.print-pep-promo   { grid-column: 1 / 4; grid-row: 2; }
+
+/* ─── CARD BASE ──────────────────────────────────── */
+.print-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--charcoal);
+  display: flex;
+  flex-direction: column;
+}
+
+.print-card-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* ─── FEATURED: AUDI ─────────────────────────────── */
+.print-card--featured {
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.4s var(--ease-out);
+  min-height: 360px;
+}
+
+.print-card--featured:hover {
+  transform: scale(1.01);
+}
+
+/* Audi dark diagonal background feel */
+.print-audi .print-card-bg {
+    /* position: relative; */
+  background: 
+  linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.855),   /* strong at bottom (text area) */
+      rgba(0, 0, 0, 0.563),    /* mid */
+      rgba(0, 0, 0, 0.1)     /* light at top */
+    ),
+  url("../images/Audi/AUDIThumb.png") center/cover no-repeat;
+  overflow: hidden;
+}
+
+/* Subtle grid pattern overlay */
+.print-audi .print-card-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    90deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 60px
+  ), repeating-linear-gradient(
+    0deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 60px
+  );
+}
+
+.print-featured-badge {
+  display: inline-block;
+  font-family: var(--font-impact);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #111;
+  background: var(--blush);
+  padding: 5px 14px;
+  margin-bottom: 1.2rem;
+  align-self: flex-start;
+}
+
+.print-card-content {
+  position: relative;
+  z-index: 1;
+  padding: clamp(20px, 2.5vw, 36px);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.print-card-tag {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 0.5rem;
+}
+
+.print-card-title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(22px, 2.2vw, 38px);
+  color: #fff;
+  line-height: 1.05;
+  margin-bottom: 0.8rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.print-card-desc {
+  font-size: clamp(13px, 1.1vw, 15px);
+  color: rgba(255,255,255,0.65);
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+  max-width: 380px;
+}
+
+.print-card-cta {
+  display: inline-block;
+  font-family: var(--font-impact);
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--blush-lt);
+  margin-top: auto;
+  transition: color 0.3s, letter-spacing 0.3s;
+}
+
+.print-card--featured:hover .print-card-cta {
+  color: #fff;
+  letter-spacing: 0.3em;
+}
+
+/* Execution tags strip at bottom of Audi card */
+.print-audi-executions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 16px clamp(20px, 2.5vw, 36px) 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.print-audi-executions span {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgb(255 255 255 / 77%);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgb(255 255 255 / 48%);
+    padding: 4px 10px;
+}
+
+/* ─── SLIDE CARDS ────────────────────────────────── */
+.print-card--slide {
+  min-height: 320px;
+}
+
+/* BestDrive */
+.print-bestdrive .print-card-bg {
+  background: #1a1a18;
+}
+
+/* Bridgestone */
+.print-bridgestone .print-card-bg {
+  background: #0d0d0d;
+}
+
+/* PEP Promo — side-by-side: info left, slideshow right */
+.print-pep-promo {
+  flex-direction: row;
+  align-items: stretch;
+  overflow: hidden;
+  min-height: 540px;
+}
+
+.print-pep-promo .print-card-bg {
+  background: linear-gradient(135deg, #1a3a6e 0%, #0d2040 100%);
+}
+
+/* Left info panel */
+.print-pep-promo .pep-info-panel {
+  flex: 0 0 260px;
+  border-right: 1px solid rgba(255,255,255,0.09);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Right slideshow panel */
+.print-pep-promo .pep-slide-panel {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.print-pep-promo .print-slide {
+  flex: 1;
+  min-height: 0;
+}
+
+.print-pep-promo .print-slide .slide-mock {
+  height: 100%;
+  min-height: 240px;
+  align-items: flex-end;
+}
+
+/* ─── SLIDESHOW ──────────────────────────────────── */
+.print-slideshow {
+  position: relative;
+  flex: 1;
+  /* Fixed height — never jumps between slides */
+  min-height: 320px;
+}
+
+/* All slides stack on top of each other in the same space */
+.print-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s ease;
+  /* push controls clear — bottom bar is ~44px */
+  bottom: 44px;
+}
+
+.print-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Controls sit at the bottom of the slideshow, always visible */
+.slide-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: rgba(255,255,255,0.04);
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+/* BestDrive pattern: separate prev/next + dots elements —
+   wrap them together in a shared control bar */
+.print-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: rgba(255,255,255,0.04);
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+/* Dots for BestDrive pattern sit inside the same bar as the buttons */
+.print-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* Slide mock designs */
+.slide-mock {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  padding: clamp(16px, 2vw, 28px);
+  min-height: 180px;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-mock--yellow {
+  background: linear-gradient(135deg, #f5a800 0%, #e08800 100%);
+}
+
+.slide-mock--dark {
+  background: linear-gradient(135deg, #1a1a18 0%, #2e2e2c 100%);
+}
+
+.slide-mock--bs-day {
+  background: linear-gradient(135deg, #c8720a 0%, #f5a800 100%);
+}
+
+.slide-mock--bs-night {
+  background: linear-gradient(135deg, #0a0a12 0%, #1a1a2e 100%);
+}
+
+.slide-mock--pep-blue {
+  background: linear-gradient(135deg, #0055a5 0%, #003d7a 100%);
+}
+
+.slide-mock--pep-gold {
+  background: linear-gradient(135deg, #c8900a 0%, #8b5e00 100%);
+}
+
+.slide-mock--pep-green {
+  background: linear-gradient(135deg, #006b3c 0%, #004d2a 100%);
+}
+
+.slide-mock-content {
+  width: 100%;
+}
+
+.slide-mock-content--split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.slide-headline {
+  font-family: var(--font-sans);
+  font-size: clamp(14px, 1.5vw, 20px);
+  color: #111;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.slide-headline strong {
+  font-weight: 700;
+}
+
+.slide-headline-sm {
+  font-family: var(--font-sans);
+  font-size: clamp(11px, 1.1vw, 15px);
+  color: #fff;
+  line-height: 1.35;
+  margin-bottom: 0.5rem;
+}
+
+.slide-headline-bs {
+  font-family: var(--font-sans);
+  font-size: clamp(13px, 1.4vw, 18px);
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 0.8rem;
+}
+
+.slide-headline-bs strong {
+  font-weight: 700;
+}
+
+.slide-body {
+  font-size: clamp(10px, 1vw, 13px);
+  color: rgba(0,0,0,0.65);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.slide-mock--dark .slide-body,
+.slide-mock--bs-night .slide-body {
+  color: rgba(255,255,255,0.55);
+}
+
+.slide-brand {
+  font-family: var(--font-impact);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.45);
+  display: block;
+}
+
+.slide-mock--dark .slide-brand,
+.slide-mock--bs-night .slide-brand {
+  color: rgba(255,255,255,0.3);
+}
+
+.slide-pep-label {
+  font-family: var(--font-impact);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 0.4rem;
+}
+
+.slide-mock--pep-blue .slide-headline,
+.slide-mock--pep-gold .slide-headline,
+.slide-mock--pep-green .slide-headline {
+  color: #fff;
+}
+
+.slide-mock--pep-blue .slide-body,
+.slide-mock--pep-gold .slide-body,
+.slide-mock--pep-green .slide-body {
+  color: rgba(255,255,255,0.6);
+}
+
+.slide-mock--pep-blue .slide-brand,
+.slide-mock--pep-gold .slide-brand,
+.slide-mock--pep-green .slide-brand {
+  color: rgba(255,255,255,0.3);
+}
+
+.slide-bs-icons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.slide-bs-icons span {
+  font-size: 11px;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.08em;
+}
+
+.slide-person-placeholder {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  font-style: italic;
+}
+
+.slide-person-placeholder span {
+  font-size: 10px;
+  color: rgba(255,255,255,0.35);
+  margin-top: 4px;
+  font-style: normal;
+  letter-spacing: 0.08em;
+}
+
+/* ─── SLIDE CONTROLS ─────────────────────────────── */
+.slide-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: rgba(0, 0, 0, 0.834);
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+.slide-btn {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: rgba(255,255,255,0.45);
+  cursor: pointer;
+  transition: color 0.3s;
+  padding: 4px 8px;
+}
+
+.slide-btn:hover {
+  color: var(--blush-lt);
+}
+
+.slide-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  transition: background 0.3s;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: var(--blush);
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────── */
+
+/* Tablet: Audi full-width top, then BestDrive + Bridgestone side by side */
+@media (max-width: 1024px) {
+  .print-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .print-audi        { grid-column: 1 / 3; grid-row: 1; min-height: 280px; }
+  .print-bestdrive   { grid-column: 1;     grid-row: 2; }
+  .print-bridgestone { grid-column: 2;     grid-row: 2; }
+  .print-pep-promo   { grid-column: 1 / 3; grid-row: 3; flex-direction: row; }
+
+  .print-pep-promo .pep-info-panel {
+    flex: 0 0 220px;
+    border-right: 1px solid rgba(255,255,255,0.09);
+    border-bottom: none;
+  }
+}
+
+/* Narrow tablet / large phone: PEP promo stacks */
+@media (max-width: 700px) {
+  .print-pep-promo {
+    flex-direction: column !important;
+    min-height: auto;
+  }
+  .print-pep-promo .pep-info-panel {
+    flex: none !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.09);
+  }
+  .print-pep-promo .pep-slide-panel {
+    min-height: 260px;
+  }
+}
+
+/* Mobile: single column */
+@media (max-width: 600px) {
+  .print-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .print-audi, .print-bestdrive, .print-bridgestone, .print-pep-promo {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .print-card--slide { min-height: 280px; }
+}
+/* ─── REAL IMAGE SLIDES ──────────────────────────── */
+.slide-img-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* Fixed heights per slideshow — no more jumping */
+.print-bestdrive .print-slideshow  { min-height: 340px; }
+.print-bridgestone .print-slideshow { min-height: 340px; }
+.pep-slide-panel                   { min-height: 360px; }
+
+/* PEP panel: slides fill to bottom, controls overlay on top */
+.pep-slide-panel .print-slide {
+  bottom: 0;
+}

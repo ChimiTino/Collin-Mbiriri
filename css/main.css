@@ -1,0 +1,89 @@
+body {
+  background-color: var(--warm-white);
+  color: var(--charcoal);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* Section shared */
+section {
+  position: relative;
+}
+
+.section-inner {
+  max-width: var(--inner-max);
+  margin: 0 auto;
+  padding: var(--section-pad) var(--gutter);
+}
+
+/* Section label */
+.about-label,
+.work-label,
+.reel-label,
+.awards-label,
+.contact-label {
+  font-family: var(--font-impact);
+  font-size: clamp(10px, 1.2vw, 13px);
+  letter-spacing: 0.3em;
+  color: var(--blush);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+/* Global heading style */
+h2 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(42px, 6vw, 88px);
+  line-height: 1.05;
+  color: var(--charcoal);
+}
+
+h2 em {
+  font-style: italic;
+  color: var(--blush);
+}
+
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(13px, 1.4vw, 15px);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: clamp(14px, 1.1vw, 16px);
+  color: var(--charcoal-mid);
+  line-height: 1.75;
+}
+
+/* Reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Footer */
+.footer {
+  background: var(--charcoal);
+  color: var(--warm-white);
+  text-align: center;
+  padding: 2.5rem var(--gutter);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.footer p{
+ color: rgba(255, 255, 255, 0.559);
+
+}

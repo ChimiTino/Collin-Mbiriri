@@ -1,0 +1,93 @@
+.about {
+  background: var(--warm-white);
+  padding: var(--section-pad) var(--gutter);
+}
+
+.about-inner {
+  max-width: var(--inner-max);
+  margin: 0 auto;
+}
+
+.about-heading {
+  margin-bottom: 3rem;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: clamp(40px, 6vw, 100px);
+  align-items: start;
+}
+
+/* Text column */
+.about-text p {
+  margin-bottom: 1.4rem;
+  font-size: clamp(15px, 1.2vw, 17px);
+  color: var(--charcoal-mid);
+}
+
+.about-quote {
+  margin-top: 2.5rem;
+  padding: 2rem 2rem 2rem 2.4rem;
+  border-left: 3px solid var(--blush);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(18px, 2vw, 22px);
+  color: var(--charcoal);
+  line-height: 1.5;
+  background: var(--cream);
+  quotes: none;
+}
+
+/* Aside column */
+.about-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding-top: 0.5rem;
+}
+
+.about-disciplines ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.about-disciplines li {
+  font-size: 14px;
+  color: var(--charcoal-mid);
+  padding-left: 1rem;
+  position: relative;
+}
+
+.about-disciplines li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--blush);
+  font-size: 12px;
+}
+
+.about-brands p,
+.about-edu p {
+  font-size: 14px;
+  color: var(--charcoal-mid);
+  line-height: 1.8;
+}
+
+.about-edu p {
+  margin-bottom: 0.8rem;
+}
+
+.about-edu span {
+  display: block;
+  font-size: 12px;
+  color: var(--warm-grey);
+  margin-top: 2px;
+}
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}

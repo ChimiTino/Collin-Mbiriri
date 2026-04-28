@@ -1,0 +1,273 @@
+/* ─── WORK SECTION ───────────────────────────────── */
+.work {
+  background: var(--charcoal);
+  padding: clamp(60px, 8vw, 100px) var(--gutter);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.work-inner {
+  max-width: var(--inner-max);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.work-label {
+  font-family: var(--font-impact);
+  font-size: clamp(10px, 1.2vw, 13px);
+  letter-spacing: 0.3em;
+  color: var(--blush);
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.work-heading {
+  color: var(--warm-white);
+  font-size: clamp(32px, 4vw, 56px);
+  margin-bottom: clamp(24px, 3vw, 40px);
+  line-height: 1.1;
+}
+
+.work-heading em {
+  color: var(--blush);
+  font-style: italic;
+}
+
+/* ─── BENTO GRID — 4 equal projects ─────────────── */
+.bento {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 10px;
+  height: clamp(500px, 62vh, 720px);
+}
+
+.bento-dry        { grid-column: 1; grid-row: 1; }
+.bento-changing   { grid-column: 2; grid-row: 1; }
+.bento-pep-brand  { grid-column: 3; grid-row: 1; }
+.bento-pepcell    { grid-column: 4; grid-row: 1; }
+
+/* ─── CELL BASE ──────────────────────────────────── */
+.bento-cell {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-decoration: none;
+  transition: transform 0.45s var(--ease-out);
+}
+
+.bento-cell:hover {
+  transform: scale(1.015);
+  z-index: 2;
+}
+
+.bento-bg {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.bento-cell:hover .bento-bg {
+  transform: scale(1.05);
+}
+
+.bento-cell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.65) 40%, rgba(0,0,0,0.4) 100%);
+  pointer-events: none;
+}
+
+.bento-content {
+  position: relative;
+  z-index: 1;
+  padding: clamp(14px, 2vw, 24px);
+}
+
+/* ─── HERO CELLS ─────────────────────────────────── */
+.bento-hero .bento-content {
+  padding: clamp(16px, 2.5vw, 32px);
+}
+
+.bento-tag {
+  font-family: var(--font-sans);
+  font-size: clamp(9px, 0.85vw, 11px);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.bento-title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(22px, 2.6vw, 40px);
+  color: #fff;
+  line-height: 1.05;
+  margin-bottom: 0.7rem;
+}
+
+.bento-desc {
+  font-size: clamp(11px, 1vw, 13.5px);
+  color: rgba(255,255,255,0.75);
+  line-height: 1.55;
+  margin-bottom: 1rem;
+  max-width: 280px;
+}
+
+.bento-cta {
+  display: inline-block;
+  font-family: var(--font-impact);
+  font-size: clamp(10px, 1vw, 12px);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blush-lt);
+  transition: color 0.3s, letter-spacing 0.3s;
+}
+
+.bento-cell:hover .bento-cta {
+  color: #fff;
+  letter-spacing: 0.28em;
+}
+
+.bento-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 0.7rem;
+}
+
+.bento-pill {
+  font-size: clamp(9px, 0.8vw, 10px);
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  backdrop-filter: blur(4px);
+}
+
+.bento-pill--gold {
+  background: rgba(200,168,0,0.3);
+  border-color: rgba(200,168,0,0.6);
+}
+
+.bento-pill--teal {
+  background: rgba(0,160,140,0.3);
+  border-color: rgba(0,200,180,0.5);
+}
+
+/* ─── SMALL CELLS ────────────────────────────────── */
+.bento-sm .bento-content {
+  padding: clamp(12px, 1.5vw, 20px);
+}
+
+.bento-title-sm {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(14px, 1.6vw, 20px);
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+}
+
+.bento-cta-sm {
+  font-family: var(--font-impact);
+  font-size: clamp(9px, 0.9vw, 11px);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  transition: color 0.3s;
+}
+
+.bento-cell:hover .bento-cta-sm {
+  color: var(--blush-lt);
+}
+
+/* ─── LABEL CELL — spans 2 cols, row 2 ──────────── */
+.bento-label-cell {
+  background: var(--charcoal-mid);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: clamp(14px, 2vw, 28px);
+  border: 1px solid rgba(255,255,255,0.07);
+  cursor: default;
+}
+
+.bento-label-cell:hover {
+  transform: none;
+}
+
+.bento-label-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.bento-more-label {
+  font-size: clamp(11px, 1.1vw, 13px);
+  color: var(--warm-grey);
+  line-height: 1.7;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.bento-more-link {
+  font-family: var(--font-impact);
+  font-size: clamp(10px, 1vw, 12px);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blush);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.bento-more-link:hover {
+  color: var(--blush-lt);
+}
+
+.bento-project-count {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(36px, 4vw, 60px);
+  color: rgba(255,255,255,0.06);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  user-select: none;
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────── */
+@media (max-width: 1024px) {
+  .bento {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: auto;
+  }
+
+  .bento-dry        { grid-column: 1; grid-row: 1; }
+  .bento-changing   { grid-column: 2; grid-row: 1; }
+  .bento-pep-brand  { grid-column: 1; grid-row: 2; }
+  .bento-pepcell    { grid-column: 2; grid-row: 2; }
+
+  .bento-cell { min-height: 300px; }
+}
+
+@media (max-width: 600px) {
+  .bento {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .bento-dry, .bento-changing,
+  .bento-pep-brand, .bento-pepcell {
+    grid-column: 1;
+    grid-row: auto;
+    min-height: 260px;
+  }
+}

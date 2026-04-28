@@ -1,0 +1,138 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem var(--gutter);
+  transition: background 0.4s var(--ease), padding 0.4s var(--ease);
+}
+
+.nav.scrolled {
+  background: rgba(250, 248, 244, 0.96);
+  backdrop-filter: blur(12px);
+  padding: 1rem var(--gutter);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+/* When menu is open, kill the backdrop-filter on the nav bar.
+   backdrop-filter creates a new stacking context that traps
+   position:fixed children, so the overlay gets clipped to the nav bar. */
+.nav.menu-open {
+  background: transparent;
+  backdrop-filter: none;
+  border-bottom: none;
+}
+
+.nav-logo {
+  font-family: var(--font-impact);
+  font-size: 24px;
+  letter-spacing: 0.1em;
+  color: var(--charcoal);
+  transition: color 0.3s;
+  /* Keep logo above the overlay */
+  position: relative;
+  z-index: 102;
+}
+
+.nav-logo:hover {
+  color: var(--blush);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.nav-links a {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  position: relative;
+  padding-bottom: 2px;
+  transition: color 0.3s;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--blush);
+  transition: width 0.3s var(--ease);
+}
+
+.nav-links a:hover {
+  color: var(--blush);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+}
+
+.nav-burger span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--charcoal);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    /* Attach to viewport, not the nav stacking context */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Must be above nav (100) and burger (101) */
+    z-index: 99;
+    background: var(--warm-white);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    font-size: 18px;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-burger {
+    display: flex;
+    /* Burger sits above the overlay */
+    position: relative;
+    z-index: 102;
+  }
+
+  .nav-burger.open span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+
+  .nav-burger.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-burger.open span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+}

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PEP Changing Stations — Collin Mbiriri</title>
+      <link rel="icon" type="image/png" href="../images/icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/nav.css" />
+  <link rel="stylesheet" href="../css/case-study.css" />
+
+  <style>
+    /* ── Page-level accent overrides ── */
+    :root {
+      --cs-accent: #007a6e;
+      --cs-accent-lt: #00c4b0;
+      --cs-hero-bg: linear-gradient(160deg, #007a6e 0%, #003d36 100%);
+    }
+
+    /* ── Hero override ── */
+    .cs-hero {
+      background: var(--cs-hero-bg) !important;
+    }
+
+    /* ── Stat bar accent ── */
+    .cs-stat-num { color: var(--cs-accent-lt); }
+
+    /* ── Quote accent ── */
+    .cs-quote {
+      border-left-color: var(--cs-accent);
+    }
+
+    /* ── Insight visual block ── */
+    .cs-insight-visual {
+      margin: 3rem 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    .cs-insight-card {
+      background: rgb(0 92 83);
+      border: 1px solid rgba(0,122,110,0.25);
+      padding: clamp(20px, 2.5vw, 32px);
+      position: relative;
+    }
+
+    .cs-insight-card::before {
+      content: attr(data-num);
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(48px, 6vw, 80px);
+      color: rgba(0,196,176,0.12);
+      position: absolute;
+      top: 8px;
+      right: 16px;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .cs-insight-card h4 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(16px, 1.8vw, 22px);
+      color: var(--cs-accent-lt);
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .cs-insight-card p {
+      font-size: clamp(12px, 1.1vw, 14px);
+      color: rgba(255,255,255,0.65);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ── Execution timeline ── */
+    .cs-timeline {
+      margin: 2.5rem 0;
+      position: relative;
+      padding-left: 2px;
+    }
+
+    .cs-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--cs-accent), transparent);
+    }
+
+    .cs-tl-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 24px;
+      margin-bottom: 2rem;
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .cs-tl-item::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--cs-accent);
+      border: 2px solid var(--charcoal);
+    }
+
+    .cs-tl-label {
+      font-family: var(--font-impact);
+      font-size: clamp(9px, 0.9vw, 11px);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cs-accent-lt);
+      padding-top: 4px;
+    }
+
+    .cs-tl-body h4 {
+      font-family: var(--font-display);
+      font-size: clamp(16px, 1.6vw, 20px);
+      font-weight: 400;
+      color: black;
+      margin-bottom: 0.4rem;
+    }
+
+    .cs-tl-body p {
+      font-size: clamp(12px, 1.1vw, 14px);
+      color: rgba(40, 40, 40, 0.65);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* ── Pull stat ── */
+    .cs-pull-stat {
+      margin: 3rem 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: rgba(0,122,110,0.15);
+      border: 1px solid rgba(0,122,110,0.2);
+    }
+
+    .cs-pull-stat-item {
+      padding: clamp(24px, 3vw, 40px);
+      background: var(--charcoal);
+    }
+
+    .cs-pull-stat-item:first-child {
+      border-right: 1px solid rgba(0,122,110,0.2);
+    }
+
+    .cs-pull-num {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(40px, 5vw, 68px);
+      color: var(--cs-accent-lt);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .cs-pull-label {
+      font-family: var(--font-impact);
+      font-size: clamp(9px, 0.9vw, 11px);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ── Video block teal theme ── */
+    .cs-video-placeholder {
+      border-color: rgba(0,122,110,0.4) !important;
+    }
+
+    .cs-play {
+      color: var(--cs-accent-lt) !important;
+    }
+
+    @media (max-width: 768px) {
+      .cs-insight-visual {
+        grid-template-columns: 1fr;
+      }
+
+      .cs-tl-item {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .cs-pull-stat {
+        grid-template-columns: 1fr;
+      }
+
+      .cs-pull-stat-item:first-child {
+        border-right: none;
+        border-bottom: 1px solid rgba(0,122,110,0.2);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav scrolled" id="nav">
+    <a href="../index.html" class="nav-logo">CM</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#reel">Reel</a></li>
+      <li><a href="#print">Print</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-burger" id="navBurger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- HERO -->
+  <div class="cs-hero" >
+  <div class="cs-hero-inner">
+
+    <div class="cs-hero-text">
+      <a href="../index.html#work" class="cs-back">← Back to Work</a>
+      <p class="cs-tag">PEP · Father's Day 2024 · Purpose / Social Impact / Experiential</p>
+      <h1 class="cs-title">PEP Changing<br /><em>Stations</em></h1>
+      <p class="cs-subtitle">Changing the parenting conversation in South Africa — one dad-friendly station at a time.</p>
+    </div>
+
+    <div class="cs-hero-image">
+      <img src="../images/changingstation.png" alt="Changing Stations"  class="fade-media" />
+    </div>
+
+    <div class="cs-awards-bar">
+      <span>Purpose-Driven Campaign</span>
+      <span>Growthpoint Partnership</span>
+      <span>On Air & Online</span>
+      <span>National Reach</span>
+    </div>
+
+  </div>
+</div>
+
+  <!-- Stats bar -->
+  <div class="cs-stats-bar">
+    <div class="cs-stat">
+      <span class="cs-stat-num">500+</span>
+      <span class="cs-stat-label">Malls Targeted</span>
+    </div>
+    <div class="cs-stat">
+      <span class="cs-stat-num">Father's<br/>Day</span>
+      <span class="cs-stat-label">Campaign Launch</span>
+    </div>
+    <div class="cs-stat">
+      <span class="cs-stat-num">360°</span>
+      <span class="cs-stat-label">Execution</span>
+    </div>
+    <div class="cs-stat">
+      <span class="cs-stat-num">SA's<br/>Largest</span>
+      <span class="cs-stat-label">Baby Retailer</span>
+    </div>
+    <div class="cs-stat">
+      <span class="cs-stat-num">National</span>
+      <span class="cs-stat-label">Conversation Shift</span>
+    </div>
+  </div>
+
+  <article class="cs-body">
+    <div class="cs-body-inner">
+
+      <!-- CHALLENGE -->
+      <div class="cs-section">
+        <div class="cs-section-label">The Challenge</div>
+        <div class="cs-section-content">
+          <h2>A sign that told<br/><em>the wrong story</em></h2>
+          <p>Walk into any shopping mall in South Africa and look for a baby changing station. You'll find it — inside the women's bathroom. The sign on the door: a woman changing a baby. This wasn't just a logistical oversight. It was a symbol of something bigger.</p>
+          <p>A large percentage of South African fathers still believe that caring for children is a woman's responsibility. As South Africa's largest baby retailer, PEP had both the platform and the obligation to challenge that narrative — but it needed to do so with action, not just words.</p>
+
+          <!-- Insight cards -->
+          <div class="cs-insight-visual">
+            <div class="cs-insight-card" data-num="01">
+              <h4>The Invisible Father</h4>
+              <p>Baby changing stations in South Africa were almost exclusively located inside women's bathrooms — making fathers feel unwelcome in one of parenting's most basic moments.</p>
+            </div>
+            <div class="cs-insight-card" data-num="02">
+              <h4>A Cultural Gap</h4>
+              <p>Many South African men still default to the belief that child-rearing is a mother's domain — a mindset entrenched across generations and reinforced by everyday infrastructure.</p>
+            </div>
+            <div class="cs-insight-card" data-num="03">
+              <h4>PEP's Position</h4>
+              <p>As the country's biggest baby store, PEP had the reach, the trust, and the responsibility to lead a national conversation about modern fatherhood.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<div class="cs-video-block">
+  <p class="cs-video-label">Campaign Film</p>
+  <video 
+    class="cs-video" 
+    id="caseVideo"
+    src="../videos/PEP_Changing_Stations.mp4"
+    muted 
+    playsinline
+    preload="metadata"
+    controls
+  ></video>
+</div>
+
+      <!-- INSIGHT -->
+      <div class="cs-section">
+        <div class="cs-section-label">The Insight</div>
+        <div class="cs-section-content">
+          <h2>Parenting should be<br/><em>everyone's role</em></h2>
+          <p>The insight was deceptively simple: if you want fathers to show up for parenting, you need to design spaces that invite them in. Infrastructure shapes behaviour. When the only changing station in a mall is in the women's bathroom, it sends a clear — if unspoken — message: this isn't for you.</p>
+          <blockquote class="cs-quote">
+            "We believe that parenting should be everyone's role. So we decided to change the parenting conversation in South Africa, starting in one very important area — baby changing stations."
+          </blockquote>
+          <p>The Father's Day timing wasn't arbitrary. It was the perfect cultural moment to elevate the conversation — when South Africa was already thinking about what fatherhood means and what it should look like.</p>
+        </div>
+      </div>
+
+      <!-- IDEA -->
+      <div class="cs-section">
+        <div class="cs-section-label">The Idea</div>
+        <div class="cs-section-content">
+          <h2>Build the space.<br/><em>Change the story.</em></h2>
+          <p>On Father's Day, PEP introduced <strong>PEP Changing Stations</strong> — purpose-built, dad-friendly baby changing stations installed in accessible areas of shopping malls across South Africa. Not tucked away in a women's bathroom. Not an afterthought. Front and centre, in spaces fathers could actually use.</p>
+          <p>In partnership with Growthpoint — one of South Africa's largest property developers — PEP created safe, welcoming spaces designed with fathers in mind. The station walls featured warm, encouraging design with mini tutorials, making even first-time fathers feel equipped rather than excluded.</p>
+          <p>The idea was physical, but the impact was cultural: a changing station isn't just a piece of furniture. It's a declaration about who parenting belongs to.</p>
+        </div>
+      </div>
+
+      
+
+      <!-- EXECUTION TIMELINE -->
+      <div class="cs-section">
+        <div class="cs-section-label">The Execution</div>
+        <div class="cs-section-content">
+          <h2>From a station<br/><em>to a movement</em></h2>
+          <p>The campaign was fully integrated — physical spaces were just the beginning. The conversation was carried across every platform that could reach South African parents.</p>
+
+          <div class="cs-timeline">
+            <div class="cs-tl-item">
+              <div class="cs-tl-label">Experiential</div>
+              <div class="cs-tl-body">
+                <h4>Dad-Friendly Changing Stations</h4>
+                <p>Installed in partnership with Growthpoint in accessible mall areas across South Africa. Each station featured wall designs with mini parenting tutorials, normalising fathers' active role in childcare.</p>
+              </div>
+            </div>
+            <div class="cs-tl-item">
+              <div class="cs-tl-label">On Air</div>
+              <div class="cs-tl-body">
+                <h4>Radio &amp; Television</h4>
+                <p>The campaign extended into traditional broadcast channels, sparking national conversations about shared parenting responsibilities and reaching households that social media couldn't.</p>
+              </div>
+            </div>
+            <div class="cs-tl-item">
+              <div class="cs-tl-label">Online</div>
+              <div class="cs-tl-body">
+                <h4>Social &amp; Digital</h4>
+                <p>Parents across the country shared their own points of view on social media, amplifying the message organically. The conversation grew beyond PEP's owned channels into a genuine national dialogue about fatherhood.</p>
+              </div>
+            </div>
+            <div class="cs-tl-item">
+              <div class="cs-tl-label">Partnership</div>
+              <div class="cs-tl-body">
+                <h4>Growthpoint Property Group</h4>
+                <p>A powerful collaboration with one of SA's biggest mall operators gave the campaign the physical infrastructure it needed — and the legitimacy of a real estate partner committed to family-friendly spaces.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PULL STAT -->
+      <div class="cs-pull-stat">
+        <div class="cs-pull-stat-item">
+          <div class="cs-pull-num">Father's Day</div>
+          <div class="cs-pull-label">Strategic launch moment — when SA was already listening</div>
+        </div>
+        <div class="cs-pull-stat-item">
+          <div class="cs-pull-num">360°</div>
+          <div class="cs-pull-label">Experiential · Radio · TV · Social · Digital</div>
+        </div>
+      </div>
+
+      <!-- RESULTS -->
+      <div class="cs-section">
+        <div class="cs-section-label">The Results</div>
+        <div class="cs-section-content">
+          <h2>A station changed.<br/><em>A conversation started.</em></h2>
+          <p>PEP Changing Stations did what great purpose-driven work should: it didn't just talk about change — it built it. By creating physical spaces for fathers in malls across South Africa, PEP shifted a cultural norm in the most literal way possible.</p>
+          <p>The campaign generated widespread organic conversation on social media, with parents across the country sharing their perspectives on what modern parenting should look like. On air and online, the dialogue extended well beyond Father's Day — embedding the idea that parenting is everyone's role into South Africa's cultural conversation.</p>
+          <p>For PEP, the campaign reinforced its position not just as South Africa's largest baby retailer, but as a brand that genuinely champions the families it serves — fathers included.</p>
+          <blockquote class="cs-quote">
+            "When you change the infrastructure, you change the conversation. When you change the conversation, you start to change the culture."
+          </blockquote>
+        </div>
+      </div>
+
+
+      
+      <!-- NAV LINKS -->
+      <div class="cs-nav-links">
+        <a href="dry-detect.html" class="cs-nav-back">← PEP Dry &amp; Detect </a>
+        <a href="pep-brand.html" class="cs-nav-next">Next: PEP Brand Platform →</a>
+      </div>
+
+    </div>
+  </article>
+
+  <footer class="footer">
+    <p>© 2026 Collin Mbiriri · Creative Director · Cape Town, South Africa</p>
+  </footer>
+
+  <script src="../js/nav.js"></script>
+</body>
+</html>

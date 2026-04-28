@@ -1,0 +1,26 @@
+:root {
+  /* Colors */
+  --cream:        #F5F0E8;
+  --warm-white:   #FAF8F4;
+  --charcoal:     #1C1C1A;
+  --charcoal-mid: #2E2E2C;
+  --warm-grey:    #8A8580;
+  --warm-grey-lt: #C8C4BE;
+  --blush:        #D4808A;
+  --blush-lt:     #EAB8C0;
+  --ink:          #141412;
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-sans:    'DM Sans', sans-serif;
+  --font-impact:  'Bebas Neue', sans-serif;
+
+  /* Spacing */
+  --section-pad:  clamp(80px, 12vw, 160px);
+  --inner-max:    1320px;
+  --gutter:       clamp(24px, 5vw, 80px);
+
+  /* Transitions */
+  --ease:         cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+}

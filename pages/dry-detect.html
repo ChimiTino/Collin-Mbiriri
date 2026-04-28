@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PEP Dry & Detect — Collin Mbiriri</title>
+  <link rel="icon" type="image/png" href="../images/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/nav.css" />
+  <link rel="stylesheet" href="../css/case-study.css" />
+</head>
+
+<body>
+
+  <nav class="nav scrolled" id="nav">
+    <a href="../index.html" class="nav-logo">CM</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#reel">Reel</a></li>
+      <li><a href="#print">Print</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-burger" id="navBurger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <style>
+    /* ── Hero two-column layout ── */
+    .cs-hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 0 clamp(32px, 4vw, 64px);
+      align-items: center;
+    }
+
+    .cs-hero-text {
+      grid-column: 1;
+      grid-row: 1 / 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .cs-hero-image {
+      grid-column: 2;
+      grid-row: 1 / 3;
+      position: relative;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+
+    .cs-hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* Placeholder shown when no image is set */
+    .cs-hero-image--empty {
+      border: 2px dashed rgba(255, 255, 255, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.15);
+    }
+
+    .cs-hero-image--empty span {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    /* ── Case study video ── */
+    .cs-video-block {
+      margin: clamp(40px, 5vw, 70px) 0;
+    }
+
+    .cs-video-label {
+      font-family: var(--font-impact);
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--blush);
+      margin-bottom: 1rem;
+    }
+
+    .cs-video {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: block;
+      background: #000;
+      /* Show native controls styled cleanly */
+      border: none;
+      outline: none;
+    }
+
+    .cs-awards-bar {
+      grid-column: 1 / 3;
+      grid-row: 3;
+      margin-top: clamp(24px, 3vw, 40px);
+    }
+
+    @media (max-width: 768px) {
+      .cs-hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .cs-hero-text {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .cs-hero-image {
+        grid-column: 1;
+        grid-row: 2;
+        margin-top: 24px;
+        aspect-ratio: 16 / 9;
+      }
+
+      .cs-awards-bar {
+        grid-column: 1;
+        grid-row: 3;
+      }
+    }
+  </style>
+
+  <div class="cs-hero" style="background: #bc577c;">
+    <div class="cs-hero-inner">
+
+      <!-- LEFT: text -->
+      <div class="cs-hero-text">
+        <a href="../index.html#work" class="cs-back">← Back to Work</a>
+        <p class="cs-tag">PEP × CANSA · 2025 · Purpose / Social Impact / Integrated</p>
+        <h1 class="cs-title">PEP Dry &amp;<br /><em>Detect Towel</em></h1>
+        <p class="cs-subtitle">The towel that keeps breast self-exams top of mind when your tops is off.</p>
+      </div>
+
+      <!-- RIGHT: hero image — swap src to add your image -->
+
+      <div class="cs-hero-image">
+        <img src="../images/Dry&DetectThumb.png" alt="PEP Dry & Detect" class="fade-media" />
+      </div>
+
+      <!-- Awards bar — full width -->
+      <div class="cs-awards-bar">
+        <span>🥇 Gold — MMA Smarties 2025</span>
+        <span>🥈 Silver × 2 — MMA Smarties 2025</span>
+        <span>🏆 Loeries Shortlist 2025</span>
+        <span>🏆 Bookmarks Win</span>
+        <span>🏆 Assegai Win</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Stats bar -->
+  <div class="cs-stats-bar">
+    <div class="cs-stat">
+      <span class="cs-stat-num">9.15M</span>
+      <span class="cs-stat-label">People Reached</span>
+    </div>
+    <div class="cs-stat">
+      <span class="cs-stat-num">350%</span>
+      <span class="cs-stat-label">Brand Mentions Increase</span>
+    </div>
+    <div class="cs-stat">
+      <span class="cs-stat-num">+13.2%</span>
+      <span class="cs-stat-label">Engagement Rate</span>
+    </div>
+    <div class="cs-stat">
+      <span class="cs-stat-num">22.2%</span>
+      <span class="cs-stat-label">Positive Sentiment</span>
+    </div>
+    <div class="cs-stat">
+      <span class="cs-stat-num">450K</span>
+      <span class="cs-stat-label">Towels Distributed</span>
+    </div>
+  </div>
+
+  <article class="cs-body">
+    <div class="cs-body-inner">
+
+      <div class="cs-section">
+        <div class="cs-section-label">The Challenge</div>
+        <div class="cs-section-content">
+          <h2>A life-threatening gap<br /><em>hiding in plain sight</em></h2>
+          <p>In South Africa, one in 26 women will face a breast cancer diagnosis in her lifetime. A reality made worse
+            not by indifference — but by the tyranny of the everyday. Women consistently put their families first,
+            leaving little room for self-care. Breast self-examinations were being overlooked not out of neglect, but
+            out of time.</p>
+          <p>We needed to find a way to bring self-examination into the moments women already had — without adding
+            another task to an already overwhelming day.</p>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-label">The Idea</div>
+        <div class="cs-section-content">
+          <h2>Meet women where<br /><em>they already are</em></h2>
+          <p>The insight was simple and powerful: every woman takes a shower. Every woman dries off. That brief moment —
+            tops off, towel in hand — is the exact moment a breast self-examination should happen.</p>
+          <p>So we turned the towel itself into the reminder. PEP's Dry & Detect Towel is a specially designed pink
+            towel featuring a discreet label with clear, step-by-step breast self-examination instructions and a QR code
+            directing women to a campaign microsite with more information on breast cancer prevention.</p>
+          <blockquote class="cs-quote">By integrating this message into women's daily routines, we turned self-checks
+            into a regular, empowering habit.</blockquote>
+        </div>
+      </div>
+
+      <!-- Video -->
+      <div class="cs-video-block">
+        <p class="cs-video-label">Campaign Film</p>
+        <video class="cs-video" id="caseVideo"
+          src="../videos/PEPDRY_AND_DETECT_TOWEL_CaseStudy_2025-05-07_Mastered Final 2.mp4" muted playsinline
+          preload="metadata" controls></video>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-label">The Execution</div>
+        <div class="cs-section-content">
+          <h2>From product<br /><em>to movement</em></h2>
+          <p>PEP partnered with the Cancer Association of South Africa (CANSA) to distribute 450,000 embroidered pink
+            towels across the country. The campaign was never just about the object — it was about creating a cultural
+            moment around breast health.</p>
+          <p>The strategy was fully integrated: owned social channels amplified the message, micro and nano influencers
+            made it personal and authentic, and traditional channels — radio, television talk shows — extended the reach
+            into households across South Africa.</p>
+          <p>Each towel came with self-exam instructions printed directly on the label and a QR code to the campaign
+            microsite, ensuring women had everything they needed at the most relevant moment possible.</p>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-label">The Results</div>
+        <div class="cs-section-content">
+          <h2>A simple towel.<br /><em>Extraordinary impact.</em></h2>
+          <p>The campaign reached over 9.15 million people. Brand mentions increased by up to 350%. Engagement rates
+            rose by 13.2%. Positive sentiment exceeded 22.2%. But beyond numbers, the Dry & Detect Towel started a
+            national conversation about breast health that continues today.</p>
+          <p>The work was recognised at the 2025 MMA Smarties South Africa Awards with a Gold in Purpose Driven
+            Marketing / Social Impact Marketing, two Silvers, a Loeries shortlist, and wins at the Bookmarks and Assegai
+            Awards.</p>
+        </div>
+      </div>
+
+      <div class="cs-nav-links">
+        <a href="../index.html#work" class="cs-nav-back">← All Work</a>
+        <a href="changing-stations.html" class="cs-nav-next">Next: Changing Stations →</a>
+      </div>
+
+    </div>
+  </article>
+
+  <footer class="footer">
+    <p>© 2026 Collin Mbiriri · Creative Director · Cape Town, South Africa</p>
+  </footer>
+
+  <script src="../js/nav.js"></script>
+
+</body>
+
+</html>
