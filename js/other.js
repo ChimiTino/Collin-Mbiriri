@@ -82,22 +82,29 @@ fadeImages.forEach(img => {
     const modalVideo = document.getElementById('modalVideo');
     const closeBtn   = document.getElementById('videoClose');
 
-    // True on phones/tablets — devices with no hover and a coarse pointer (finger)
+    // Detect touch/mobile: no hover capability + coarse pointer (finger)
     const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
     thumbVideos.forEach(video => {
       if (isTouchDevice) {
-        // Mobile: autoplay muted when scrolled into view, pause when out
+        // Mobile: autoplay muted when scrolled into view
         const thumbObserver = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
+              // Force preload + muted programmatically — required for iOS Safari autoplay
+              video.muted = true;
+              video.setAttribute('playsinline', '');
+              if (video.preload !== 'auto') {
+                video.preload = 'auto';
+                video.load();  // kick off buffering now that we're in view
+              }
               video.play().catch(() => {});
             } else {
               video.pause();
               video.currentTime = 0;
             }
           });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.3 }); // 30% visible is enough to start on a small screen
         thumbObserver.observe(video);
       } else {
         // Desktop: hover play / pause
