@@ -76,18 +76,36 @@ fadeImages.forEach(img => {
       else img.addEventListener('load', () => img.classList.add('loaded'));
     });
 
-    // ── Thumb video: hover = play/pause, click = open modal ──
+    // ── Thumb video: hover = play/pause (desktop) | scroll-to-play (mobile) ──
     const thumbVideos = document.querySelectorAll('.cs-reel-thumb');
     const modal      = document.getElementById('videoModal');
     const modalVideo = document.getElementById('modalVideo');
     const closeBtn   = document.getElementById('videoClose');
 
-    thumbVideos.forEach(video => {
-      // Hover play / pause
-      video.addEventListener('mouseenter', () => video.play());
-      video.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
+    // True on phones/tablets — devices with no hover and a coarse pointer (finger)
+    const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
-      // Click → open modal with sound
+    thumbVideos.forEach(video => {
+      if (isTouchDevice) {
+        // Mobile: autoplay muted when scrolled into view, pause when out
+        const thumbObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              video.play().catch(() => {});
+            } else {
+              video.pause();
+              video.currentTime = 0;
+            }
+          });
+        }, { threshold: 0.5 });
+        thumbObserver.observe(video);
+      } else {
+        // Desktop: hover play / pause
+        video.addEventListener('mouseenter', () => video.play());
+        video.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
+      }
+
+      // Click → open modal with sound (both mobile and desktop)
       video.addEventListener('click', () => {
         modal.style.display = 'flex';
         requestAnimationFrame(() => modal.classList.add('show'));
