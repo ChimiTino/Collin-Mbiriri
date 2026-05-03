@@ -41,15 +41,36 @@ VideoObserver.observe(heroVideo);
 
 const thumbVideos = document.querySelectorAll(".reel-thumb-video");
 
-thumbVideos.forEach(video => {
-  video.addEventListener("mouseenter", () => {
-    video.play();
-  });
+const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
-  video.addEventListener("mouseleave", () => {
-    video.pause();
-    video.currentTime = 0;
-  });
+thumbVideos.forEach(video => {
+  if (isTouchDevice) {
+    // Mobile: autoplay muted when scrolled into view, pause when out
+    const thumbObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          video.muted = true;
+          video.setAttribute('playsinline', '');
+          if (video.preload !== 'auto') {
+            video.preload = 'auto';
+            video.load();
+          }
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+          video.currentTime = 0;
+        }
+      });
+    }, { threshold: 0.3 });
+    thumbObserver.observe(video);
+  } else {
+    // Desktop: hover play / pause
+    video.addEventListener("mouseenter", () => video.play());
+    video.addEventListener("mouseleave", () => {
+      video.pause();
+      video.currentTime = 0;
+    });
+  }
 });
 const modal = document.getElementById("videoModal");
 const modalVideo = document.getElementById("modalVideo");
